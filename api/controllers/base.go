@@ -51,7 +51,7 @@ func (server *Server) Initalize(DbDriver, DbUser, DbPassword, DbPort, DbName, Db
 
 	server.Router = mux.NewRouter()
 
-	// server.initializeRoutes()
+	server.initializeRoutes()
 }
 
 // Run is...

@@ -144,7 +144,7 @@ func (u *User) FindAllUsers(db *gorm.DB) (*[]User, error) {
 // FindUserByID is...
 func (u *User) FindUserByID(db *gorm.DB, uid uint32) (*User, error) {
 	var err error
-	err = db.Debug().Model(User{}).Where("id = '?'", uid).Take(&u).Error
+	err = db.Debug().Model(User{}).Where("id = ?", uid).Take(&u).Error
 
 	if err != nil {
 		return &User{}, err
@@ -161,7 +161,7 @@ func (u *User) UpdateUser(db *gorm.DB, uid uint32) (*User, error) {
 		log.Fatal(err)
 	}
 
-	db = db.Debug().Model(User{}).Where("id = '?'", uid).Take(&u).UpdateColumns(
+	db = db.Debug().Model(User{}).Where("id = ?", uid).Take(&u).UpdateColumns(
 		map[string]interface{}{
 			"password":   u.Password,
 			"nickname":   u.Nickname,
@@ -179,7 +179,7 @@ func (u *User) UpdateUser(db *gorm.DB, uid uint32) (*User, error) {
 
 // DeleteUser is...
 func (u *User) DeleteUser(db *gorm.DB, uid uint32) (int64, error) {
-	db = db.Debug().Model(&User{}).Where("id = '?'", uid).Delete(&User{})
+	db = db.Debug().Model(&User{}).Where("id = ?", uid).Delete(&User{})
 
 	if db.Error != nil {
 		return 0, db.Error

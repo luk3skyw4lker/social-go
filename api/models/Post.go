@@ -11,7 +11,7 @@ import (
 
 // Post is...
 type Post struct {
-	ID        uint64    `gorm:"primary_key;auto_increment" json:"id"`
+	ID        uint32    `gorm:"primary_key;auto_increment" json:"id"`
 	Title     string    `gorm:"size:255;not null;unique" json:"title"`
 	Content   string    `gorm:"size:255;not null;" json:"content"`
 	Author    User      `json:"author"`
@@ -85,10 +85,10 @@ func (p *Post) FindAllPosts(db *gorm.DB) (*[]Post, error) {
 }
 
 // FindPostByID is...
-func (p *Post) FindPostByID(db *gorm.DB, uid uint32) (*Post, error) {
+func (p *Post) FindPostByID(db *gorm.DB, pid uint32) (*Post, error) {
 	var err error
 
-	err = db.Debug().Model(&Post{}).Where("id = ?", uid).Take(&p).Error
+	err = db.Debug().Model(&Post{}).Where("id = ?", pid).Take(&p).Error
 
 	if err != nil {
 		return &Post{}, err
@@ -119,7 +119,7 @@ func (p *Post) UpdatePost(db *gorm.DB) (*Post, error) {
 }
 
 // DeletePost is...
-func (p *Post) DeletePost(db *gorm.DB, pid uint64, uid uint32) (int64, error) {
+func (p *Post) DeletePost(db *gorm.DB, pid uint32, uid uint32) (int64, error) {
 	db = db.Debug().Model(&Post{}).Where("id = ? and author_id = ?", pid, uid).Take(&Post{}).Delete(&Post{})
 
 	if db.Error != nil {

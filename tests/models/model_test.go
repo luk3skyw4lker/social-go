@@ -103,12 +103,12 @@ func seedOneUser() (models.User, error) {
 
 func seedUsers() error {
 	users := []models.User{
-		models.User{
+		{
 			Nickname: "Fake 1",
 			Email:    "fake1@faker.com",
 			Password: "fake1@password",
 		},
-		models.User{
+		{
 			Nickname: "Fake 2",
 			Email:    "fake2@faker.com",
 			Password: "fake2@password",
@@ -181,23 +181,23 @@ func seedOneUserAndOnePost() (models.Post, error) {
 func seedUsersAndPosts() ([]models.User, []models.Post, error) {
 	var err error
 	var users = []models.User{
-		models.User{
+		{
 			Nickname: "Fake 1",
 			Email:    "fake1@faker.com",
 			Password: "fake1@password",
 		},
-		models.User{
+		{
 			Nickname: "Fake 2",
 			Email:    "fake2@faker.com",
 			Password: "fake2@password",
 		},
 	}
 	var posts = []models.Post{
-		models.Post{
+		{
 			Title:   "Title 1",
 			Content: "This is the content",
 		},
-		models.Post{
+		{
 			Title:   "Title 2",
 			Content: "This is the content",
 		},

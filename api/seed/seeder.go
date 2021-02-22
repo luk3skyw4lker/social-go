@@ -9,12 +9,12 @@ import (
 )
 
 var users = []models.User{
-	models.User{
+	{
 		Nickname: "Lucas Henrique",
 		Email:    "lucashenriqueblemos@gmail.com",
 		Password: "password",
 	},
-	models.User{
+	{
 		Nickname: "Another user",
 		Email:    "another@email.com",
 		Password: "another",
@@ -22,11 +22,11 @@ var users = []models.User{
 }
 
 var posts = []models.Post{
-	models.Post{
+	{
 		Title:   "Title 1",
 		Content: "Hello world 1",
 	},
-	models.Post{
+	{
 		Title:   "Title 2",
 		Content: "Hello world 2",
 	},

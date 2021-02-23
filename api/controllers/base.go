@@ -43,7 +43,7 @@ func (server *Server) Initalize(DbDriver, DbUser, DbPassword, DbPort, DbName, Db
 
 			log.Fatal("This is the error:", err)
 		} else {
-			fmt.Printf("We are connected to the %s database", DbDriver)
+			fmt.Printf("Connected to the %s database\n", DbDriver)
 		}
 	}
 
@@ -55,7 +55,14 @@ func (server *Server) Initalize(DbDriver, DbUser, DbPassword, DbPort, DbName, Db
 }
 
 // Run is...
-func (server *Server) Run(addr string) {
-	fmt.Println("Listening to port 8080")
-	log.Fatal(http.ListenAndServe(addr, server.Router))
+func (server *Server) Run(addr string) error {
+	fmt.Println("Starting to listen on 8080")
+
+	err := http.ListenAndServe(addr, server.Router)
+
+	if err != nil {
+		return err
+	}
+
+	return nil
 }

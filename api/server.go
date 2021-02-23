@@ -21,12 +21,18 @@ func Run() {
 	if err != nil {
 		log.Fatalf("Error getting .env. Reason: %v", err)
 	} else {
-		fmt.Println("Getting .env values")
+		fmt.Println("ENV values loaded")
 	}
 
 	server.Initalize(os.Getenv("DB_DRIVER"), os.Getenv("DB_USER"), os.Getenv("DB_PASSWORD"), os.Getenv("DB_PORT"), os.Getenv("DB_NAME"), os.Getenv("DB_HOST"))
 
-	seed.Load(server.DB)
+	if os.Getenv("ENVIRONMENT") == "DEV" {
+		seed.Load(server.DB)
+	}
 
-	server.Run(":8080")
+	serverRunning := server.Run(":8080")
+
+	if serverRunning != nil {
+		log.Fatalln("Server failed to start")
+	}
 }
